@@ -1,4 +1,4 @@
-import { Bell, ChevronRight } from 'lucide-react'
+import { Bell, ChevronRight, Search } from 'lucide-react'
 
 interface TopBarProps {
     breadcrumbs?: string[]
@@ -17,6 +17,14 @@ export default function TopBar({ breadcrumbs = ['Dashboard'] }: TopBarProps) {
                 ))}
             </div>
             <div className="flex items-center gap-4">
+                <button
+                    onClick={() => document.dispatchEvent(new CustomEvent('open-command-palette'))}
+                    className="flex items-center gap-2 rounded-lg border border-neutral-200 bg-neutral-50 px-3 py-1.5 text-sm text-neutral-400 transition-colors hover:bg-neutral-100"
+                >
+                    <Search className="h-3.5 w-3.5" />
+                    <span>Search...</span>
+                    <kbd className="ml-4 rounded bg-neutral-200 px-1.5 py-0.5 text-xs text-neutral-500">⌘K</kbd>
+                </button>
                 <button className="relative rounded-md p-2 transition-colors hover:bg-neutral-100">
                     <Bell className="h-5 w-5 text-neutral-500" />
                     <span className="absolute right-1 top-1 h-2 w-2 rounded-full bg-red-500" />

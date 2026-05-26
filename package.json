@@ -1,40 +1,41 @@
 {
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "build": "vite build",
-    "dev": "vite",
-    "prepare": "husky"
-  },
-  "devDependencies": {
-    "@types/react": "^19.2.15",
-    "@types/react-dom": "^19.2.3",
-    "autoprefixer": "^10.5.0",
-    "axios": "^1.7.4",
-    "concurrently": "^9.0.1",
-    "husky": "^9.1.7",
-    "laravel-vite-plugin": "^3.1.0",
-    "lint-staged": "^16.4.0",
-    "postcss": "^8.5.15",
-    "prettier": "^3.8.3",
-    "prettier-plugin-tailwindcss": "^0.8.0",
-    "tailwindcss": "^3.4.19",
-    "vite": "^8.0.14"
-  },
-  "dependencies": {
-    "@inertiajs/react": "^3.2.0",
-    "@inertiajs/vite": "^3.2.0",
-    "@tailwindcss/postcss": "^4.3.0",
-    "@vitejs/plugin-react": "^6.0.2",
-    "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
-    "lucide-react": "^1.16.0",
-    "react": "^19.2.6",
-    "react-dom": "^19.2.6",
-    "tailwind-merge": "^3.6.0"
-  },
-  "lint-staged": {
-    "*.{js,ts,tsx,jsx,css,json,md}": "prettier --write",
-    "*.php": "./vendor/bin/pint"
-  }
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "build": "vite build",
+        "dev": "vite",
+        "prepare": "husky"
+    },
+    "devDependencies": {
+        "@types/react": "^19.2.15",
+        "@types/react-dom": "^19.2.3",
+        "autoprefixer": "^10.5.0",
+        "axios": "^1.7.4",
+        "concurrently": "^9.0.1",
+        "husky": "^9.1.7",
+        "laravel-vite-plugin": "^3.1.0",
+        "lint-staged": "^16.4.0",
+        "postcss": "^8.5.15",
+        "prettier": "^3.8.3",
+        "prettier-plugin-tailwindcss": "^0.8.0",
+        "tailwindcss": "^3.4.19",
+        "vite": "^8.0.14"
+    },
+    "dependencies": {
+        "@inertiajs/react": "^3.2.0",
+        "@inertiajs/vite": "^3.2.0",
+        "@tailwindcss/postcss": "^4.3.0",
+        "@vitejs/plugin-react": "^6.0.2",
+        "class-variance-authority": "^0.7.1",
+        "clsx": "^2.1.1",
+        "cmdk": "^1.1.1",
+        "lucide-react": "^1.16.0",
+        "react": "^19.2.6",
+        "react-dom": "^19.2.6",
+        "tailwind-merge": "^3.6.0"
+    },
+    "lint-staged": {
+        "*.{js,ts,tsx,jsx,css,json,md}": "prettier --write",
+        "*.php": "./vendor/bin/pint"
+    }
 }
