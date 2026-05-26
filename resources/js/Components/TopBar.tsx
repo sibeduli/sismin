@@ -1,14 +1,23 @@
+import { useState } from 'react'
 import { Bell, ChevronRight, Search } from 'lucide-react'
+import CompanyDropdown, { type CompanyOption } from '@/Components/CompanyDropdown'
+
+const companies: CompanyOption[] = [
+    { label: 'My Company 1', value: 'company-1' },
+    { label: 'My Company 2', value: 'company-2' },
+]
 
 interface TopBarProps {
     breadcrumbs?: string[]
 }
 
 export default function TopBar({ breadcrumbs = ['Dashboard'] }: TopBarProps) {
+    const [company, setCompany] = useState(companies[0].value)
+
     return (
         <header className="relative z-10 flex h-16 items-center justify-between border-b border-neutral-200 bg-white px-6 shadow-[0_2px_8px_rgba(0,0,0,0.08)]">
             <div className="flex items-center gap-2 text-sm text-neutral-500">
-                <span className="font-medium text-neutral-400">My Company</span>
+                <CompanyDropdown options={companies} value={company} onChange={setCompany} className="w-48" />
                 {breadcrumbs.map((crumb, i) => (
                     <span key={i} className="flex items-center gap-2">
                         <ChevronRight className="h-4 w-4" />

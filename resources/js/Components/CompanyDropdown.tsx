@@ -35,7 +35,7 @@ export default function CompanyDropdown({ options, value, onChange, className }:
             <button
                 type="button"
                 onClick={() => setOpen(!open)}
-                className="flex w-full items-center gap-2 rounded-lg bg-white px-3 py-2.5 text-left shadow-sm transition-shadow hover:shadow"
+                className="flex w-full items-center gap-2 rounded-lg border border-orange/20 bg-orange/10 px-3 py-2.5 text-left transition-colors hover:bg-orange/20"
             >
                 <Building2 className="h-4 w-4 shrink-0 text-rust" />
                 <span className="flex-1 truncate text-sm font-medium text-slate">
