@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Bell, ChevronRight, Search } from 'lucide-react'
+import { useState, useRef, useEffect } from 'react'
+import { Bell, ChevronDown, ChevronRight, Search, User, Settings, LogOut } from 'lucide-react'
 import CompanyDropdown, { type CompanyOption } from '@/Components/CompanyDropdown'
 
 const companies: CompanyOption[] = [
@@ -11,8 +11,25 @@ interface TopBarProps {
     breadcrumbs?: string[]
 }
 
+const userMenuItems = [
+    { label: 'Profile', icon: User, href: '/profile' },
+    { label: 'Account', icon: Settings, href: '/account' },
+]
+
 export default function TopBar({ breadcrumbs = ['Dashboard'] }: TopBarProps) {
     const [company, setCompany] = useState(companies[0].value)
+    const [userOpen, setUserOpen] = useState(false)
+    const userRef = useRef<HTMLDivElement>(null)
+
+    useEffect(() => {
+        function handleClickOutside(e: MouseEvent) {
+            if (userRef.current && !userRef.current.contains(e.target as Node)) {
+                setUserOpen(false)
+            }
+        }
+        document.addEventListener('mousedown', handleClickOutside)
+        return () => document.removeEventListener('mousedown', handleClickOutside)
+    }, [])
 
     return (
         <header className="relative z-10 flex h-16 items-center justify-between border-b border-neutral-200 bg-white px-6 shadow-[0_2px_8px_rgba(0,0,0,0.08)]">
@@ -38,11 +55,52 @@ export default function TopBar({ breadcrumbs = ['Dashboard'] }: TopBarProps) {
                     <Bell className="h-5 w-5 text-neutral-500" />
                     <span className="absolute right-1 top-1 h-2 w-2 rounded-full bg-red-500" />
                 </button>
-                <div className="flex items-center gap-2">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-neutral-300 text-sm font-medium text-neutral-700">
-                        MU
-                    </div>
-                    <span className="text-sm font-medium text-neutral-700">My User</span>
+                <div ref={userRef} className="relative">
+                    <button
+                        onClick={() => setUserOpen(!userOpen)}
+                        className="flex items-center gap-2 rounded-lg px-2 py-1 transition-colors hover:bg-neutral-100"
+                    >
+                        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-orange text-sm font-medium text-white">
+                            MU
+                        </div>
+                        <span className="text-sm font-medium text-neutral-700">My User</span>
+                        <ChevronDown
+                            className={`h-3.5 w-3.5 text-neutral-400 transition-transform duration-200 ${userOpen ? 'rotate-180' : ''}`}
+                        />
+                    </button>
+                    {userOpen && (
+                        <div className="absolute right-0 top-full z-50 mt-1.5 w-56 rounded-lg border border-gray-200 bg-white py-1 shadow-lg">
+                            <div className="border-b border-gray-100 px-3 py-3">
+                                <p className="text-sm font-medium text-neutral-800">My User</p>
+                                <p className="text-xs text-neutral-400">myuser@example.com</p>
+                                <span className="mt-1 inline-block rounded-full bg-orange/10 px-2 py-0.5 text-xs font-medium text-orange">
+                                    Regular User
+                                </span>
+                            </div>
+                            <div className="py-1">
+                                {userMenuItems.map((item) => (
+                                    <a
+                                        key={item.label}
+                                        href={item.href}
+                                        className="flex items-center gap-2 px-3 py-2 text-sm text-neutral-700 transition-colors hover:bg-gray-50"
+                                    >
+                                        <item.icon className="h-4 w-4 text-neutral-400" />
+                                        {item.label}
+                                    </a>
+                                ))}
+                            </div>
+                            <div className="border-t border-gray-100" />
+                            <button
+                                onClick={() => {
+                                    /* TODO: handle logout */
+                                }}
+                                className="flex w-full items-center gap-2 px-3 py-2 text-sm text-red-600 transition-colors hover:bg-red-50"
+                            >
+                                <LogOut className="h-4 w-4" />
+                                Logout
+                            </button>
+                        </div>
+                    )}
                 </div>
             </div>
         </header>
