@@ -36,18 +36,17 @@ export default function Sidebar() {
     const [company, setCompany] = useState(companies[0].value)
 
     return (
-        <aside className="fixed left-0 top-0 h-screen w-60 bg-orange text-white flex flex-col shadow-[4px_0_12px_rgba(0,0,0,0.25)] z-20">
-            <div className="h-16 flex items-center px-5 border-b border-white/20">
-                <span className="bg-white rounded-full px-4 py-1 text-lg font-bold"><span className="text-slate">SIS</span><span className="text-rust">MIN</span></span>
+        <aside className="fixed left-0 top-0 z-20 flex h-screen w-60 flex-col bg-orange text-white shadow-[4px_0_12px_rgba(0,0,0,0.25)]">
+            <div className="flex h-16 items-center border-b border-white/20 px-5">
+                <span className="rounded-full bg-white px-4 py-1 text-lg font-bold">
+                    <span className="text-slate">SIS</span>
+                    <span className="text-rust">MIN</span>
+                </span>
             </div>
             <div className="px-3 pt-3">
-                <CompanyDropdown
-                    options={companies}
-                    value={company}
-                    onChange={setCompany}
-                />
+                <CompanyDropdown options={companies} value={company} onChange={setCompany} />
             </div>
-            <nav className="flex-1 py-4 space-y-1 px-3">
+            <nav className="flex-1 space-y-1 px-3 py-4">
                 {menuItems.map((item) => {
                     const active = url.startsWith(item.href) && (item.href === '/' ? url === '/' : true)
                     return (
@@ -55,10 +54,8 @@ export default function Sidebar() {
                             key={item.label}
                             href={item.href}
                             className={cn(
-                                'flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-colors',
-                                active
-                                    ? 'bg-rust text-white shadow-inner'
-                                    : 'hover:bg-white/10 hover:text-white'
+                                'flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors',
+                                active ? 'bg-rust text-white shadow-inner' : 'hover:bg-white/10 hover:text-white',
                             )}
                         >
                             <item.icon className="h-5 w-5" />

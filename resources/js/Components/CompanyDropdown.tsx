@@ -35,17 +35,17 @@ export default function CompanyDropdown({ options, value, onChange, className }:
             <button
                 type="button"
                 onClick={() => setOpen(!open)}
-                className="w-full flex items-center gap-2 bg-white rounded-lg px-3 py-2.5 text-left shadow-sm hover:shadow transition-shadow"
+                className="flex w-full items-center gap-2 rounded-lg bg-white px-3 py-2.5 text-left shadow-sm transition-shadow hover:shadow"
             >
-                <Building2 className="h-4 w-4 text-rust shrink-0" />
+                <Building2 className="h-4 w-4 shrink-0 text-rust" />
                 <span className="flex-1 truncate text-sm font-medium text-slate">
                     {selected?.label ?? 'Select company'}
                 </span>
-                <ChevronsUpDown className="h-3.5 w-3.5 text-gray-400 shrink-0" />
+                <ChevronsUpDown className="h-3.5 w-3.5 shrink-0 text-gray-400" />
             </button>
 
             {open && (
-                <ul className="absolute left-0 right-0 mt-1.5 bg-white rounded-lg shadow-lg border border-gray-100 py-1 z-50 max-h-48 overflow-y-auto">
+                <ul className="absolute left-0 right-0 z-50 mt-1.5 max-h-48 overflow-y-auto rounded-lg border border-gray-100 bg-white py-1 shadow-lg">
                     {options.map((option) => (
                         <li key={option.value}>
                             <button
@@ -55,15 +55,13 @@ export default function CompanyDropdown({ options, value, onChange, className }:
                                     setOpen(false)
                                 }}
                                 className={cn(
-                                    'w-full flex items-center gap-2 px-3 py-2 text-sm text-slate hover:bg-gray-50 transition-colors',
-                                    option.value === value && 'bg-gray-50'
+                                    'flex w-full items-center gap-2 px-3 py-2 text-sm text-slate transition-colors hover:bg-gray-50',
+                                    option.value === value && 'bg-gray-50',
                                 )}
                             >
-                                <Building2 className="h-3.5 w-3.5 text-gray-400 shrink-0" />
+                                <Building2 className="h-3.5 w-3.5 shrink-0 text-gray-400" />
                                 <span className="flex-1 truncate">{option.label}</span>
-                                {option.value === value && (
-                                    <Check className="h-3.5 w-3.5 text-rust shrink-0" />
-                                )}
+                                {option.value === value && <Check className="h-3.5 w-3.5 shrink-0 text-rust" />}
                             </button>
                         </li>
                     ))}

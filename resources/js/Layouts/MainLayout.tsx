@@ -13,9 +13,7 @@ export default function MainLayout({ children, breadcrumbs }: MainLayoutProps) {
             <Sidebar />
             <div className="ml-60">
                 <TopBar breadcrumbs={breadcrumbs} />
-                <main className="p-6">
-                    {children}
-                </main>
+                <main className="p-6">{children}</main>
             </div>
         </div>
     )
