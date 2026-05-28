@@ -1,8 +1,8 @@
-import { defineConfig } from 'vite';
-import laravel from 'laravel-vite-plugin';
-import react from '@vitejs/plugin-react';
-import inertia from '@inertiajs/vite';
-import path from 'path';
+import { defineConfig } from 'vite'
+import laravel from 'laravel-vite-plugin'
+import react from '@vitejs/plugin-react'
+import inertia from '@inertiajs/vite'
+import path from 'path'
 
 export default defineConfig({
     plugins: [
@@ -10,7 +10,9 @@ export default defineConfig({
             input: ['resources/css/app.css', 'resources/js/app.tsx'],
             refresh: true,
         }),
-        inertia(),
+        inertia({
+            ssr: false,
+        }),
         react(),
     ],
     resolve: {
@@ -18,4 +20,4 @@ export default defineConfig({
             '@': path.resolve(__dirname, 'resources/js'),
         },
     },
-});
+})
